@@ -295,7 +295,7 @@ namespace XamlFlair
 
 		private static void Timeline_Completed(object sender, object e)
 		{
-#if __WPF__
+#if __WPF__ && !OPENSILVER
 			var timeline = (sender as ClockGroup)?.Timeline as Timeline;
 #else
 			var timeline = sender as Timeline;

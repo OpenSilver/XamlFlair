@@ -7,6 +7,8 @@ namespace XamlFlair
     public enum TransformationType
     {
         Render = 0,
+#if !OPENSILVER
         Layout,
+#endif
     }
 }

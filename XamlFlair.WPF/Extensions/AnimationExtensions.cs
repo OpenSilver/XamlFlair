@@ -379,18 +379,24 @@ namespace XamlFlair.Extensions
 
 		private static TransformGroup GetFrameworkElementTransform(FrameworkElement element, AnimationSettings settings)
 		{
+#if OPENSILVER
+			return element.RenderTransform as TransformGroup;
+#else
 			return settings.TransformOn == TransformationType.Layout ?
 				(element.LayoutTransform as TransformGroup) :
 				(element.RenderTransform as TransformGroup);
-		}
+#endif
+        }
 
 		private static void SetTransform(FrameworkElement element, AnimationSettings settings, TransformGroup transform, bool updateTransformCenterPoint = false)
 		{
+#if !OPENSILVER
 			if (settings.TransformOn == TransformationType.Layout)
 			{
 				element.LayoutTransform = transform;
 			}
 			else
+#endif
 			{
 				element.RenderTransform = transform;
 
@@ -479,6 +485,9 @@ namespace XamlFlair.Extensions
 			element.Opacity = settings.Opacity;
 			element.RenderTransformOrigin = settings.TransformCenterPoint;
 
+#if OPENSILVER
+            element.RenderTransform = transform;
+#else
 			if (settings.TransformOn == TransformationType.Render)
 			{
 				element.RenderTransform = transform;
@@ -487,8 +496,9 @@ namespace XamlFlair.Extensions
 			{
 				element.LayoutTransform = transform;
 			}
+#endif
 
-			element.Effect = (element.Effect as BlurEffect) ?? new BlurEffect()
+            element.Effect = (element.Effect as BlurEffect) ?? new BlurEffect()
 			{
 				Radius = settings.BlurRadius
 			};

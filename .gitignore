@@ -46,3 +46,5 @@ Samples/XamlFlair.Samples.UWP/XamlFlair.Samples.UWP.csproj.user
 /Samples/XamlFlair.Samples.UWP/AppPackages
 /Samples/Uno/XamlFlair.Samples.Uno.UWP/AppPackages
 /nuget_push.bat
+/Samples/OpenSilver/XamlFlair.Samples.OpenSilver.Browser/wwwroot/libs/*
+/Samples/OpenSilver/XamlFlair.Samples.OpenSilver.Browser/wwwroot/resources/*

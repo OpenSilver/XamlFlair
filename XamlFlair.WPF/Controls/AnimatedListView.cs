@@ -4,6 +4,7 @@ using XamlFlair.Extensions;
 
 namespace XamlFlair.Controls
 {
+#if !OPENSILVER
 	public class AnimatedListView : ListView
 	{
 		private bool _isFirstItemContainerLoaded; // when first item container has been generated
@@ -20,4 +21,5 @@ namespace XamlFlair.Controls
 			this.PrepareContainerForItemOverrideEx(element, ref _isFirstItemContainerLoaded);
 		}
 	}
+#endif
 }

@@ -181,14 +181,21 @@ namespace XamlFlair
 
 				var itemSettings = GetItems(lb);
 
-				// ItemsProperty can only be set on a AnimatedListBox or AnimatedListView.
+                // ItemsProperty can only be set on a AnimatedListBox or AnimatedListView.
+#if OPENSILVER
+                if (itemSettings != null && !(lb is AnimatedListBox))
+                {
+                    throw new ArgumentException($"{nameof(ItemsProperty)} can only be set on a {nameof(AnimatedListBox)}.");
+                }
+#else
 				if (itemSettings != null && !(lb is AnimatedListBox) && !(lb is AnimatedListView))
 				{
 					throw new ArgumentException($"{nameof(ItemsProperty)} can only be set on a {nameof(AnimatedListBox)} or {nameof(AnimatedListView)}.");
 				}
+#endif
 
-				// ListBox item animations will only work if the inner ScrollViewer has CanContentScroll = true
-				if (lb?.FindDescendant<ScrollViewer>() is ScrollViewer scroller && !scroller.CanContentScroll)
+                // ListBox item animations will only work if the inner ScrollViewer has CanContentScroll = true
+                if (lb?.FindDescendant<ScrollViewer>() is ScrollViewer scroller && !scroller.CanContentScroll)
 				{
 					throw new ArgumentException($"{nameof(ListBox)} item animations will only work if the inner {nameof(ScrollViewer)} has {nameof(scroller.CanContentScroll)} = true");
 				}
@@ -201,5 +208,5 @@ namespace XamlFlair
 			}
 		}
 #endif
-	}
+			}
 }

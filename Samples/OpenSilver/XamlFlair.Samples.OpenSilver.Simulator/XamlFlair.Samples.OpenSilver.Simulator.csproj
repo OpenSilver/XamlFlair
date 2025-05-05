@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenSilver.Simulator" Version="3.3.0-preview-2025-05-02-130810-ce7cf90e" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\XamlFlair.Samples.OpenSilver\XamlFlair.Samples.OpenSilver.csproj" />
+  </ItemGroup>
+
+</Project>
